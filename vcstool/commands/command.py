@@ -59,7 +59,7 @@ def add_common_arguments(
     group.add_argument(
         '-w', '--workers', type=check_greater_zero, metavar='N',
         default=default_workers, help='Number of parallel worker threads')
-    group.add_argument("-d", "--delay", type=float, default=0.0, help="Delay between job processing to prevent DOS")
+    group.add_argument("-d", "--delay", type=float, default=4.0, help="Delay between job processing to prevent DOS")
     group.add_argument(
         '--repos', action='store_true', default=False,
         help='List repositories which the command operates on')

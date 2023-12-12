@@ -1,5 +1,7 @@
 What is vcstool?
 ================
+This is a fork of vcstool that defaults to using one worker with a delay so as not to trigger rate limitting.
+It is based off <https://github.com/andrewbest-tri/vcstool/tree/andrewbest/delay> which is a pull request on the original repository <https://github.com/dirk-thomas/vcstool>
 
 Vcstool is a version control system (VCS) tool, designed to make working with multiple repositories easier.
 
