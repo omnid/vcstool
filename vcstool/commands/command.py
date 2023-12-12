@@ -52,13 +52,9 @@ def add_common_arguments(
         group.add_argument(
             '-n', '--nested', action='store_true',
             default=False, help='Search for nested repositories')
-    try:
-        default_workers = cpu_count()
-    except NotImplementedError:
-        default_workers = 4
     group.add_argument(
         '-w', '--workers', type=check_greater_zero, metavar='N',
-        default=default_workers, help='Number of parallel worker threads')
+        default=1, help='Number of parallel worker threads')
     group.add_argument("-d", "--delay", type=float, default=4.0, help="Delay between job processing to prevent DOS")
     group.add_argument(
         '--repos', action='store_true', default=False,
