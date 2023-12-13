@@ -1,9 +1,12 @@
 What is vcstool?
 ================
-This is a fork of vcstool that defaults to using one worker with a delay so as not to trigger rate limiting.
-It is based off `<https://github.com/andrewbest-tri/vcstool/tree/andrewbest/delay>`_ which is a pull request on the original repository `<https://github.com/dirk-thomas/vcstool>`_
+This is a fork of `vcstool <https://github.com/dirk-thomas/vcstool>`_ with the following modifications and opinionated defaults suitable for the Omnid project:
 
-Install locally with ``pip install -e .`` from the base directory. The ``vcs`` script will be installed in ``~/.local/bin``.
+1. Defaults to using one worker with a 4 second delay to avoid github rate-limiting, based off `this fork: <https://github.com/andrewbest-tri/vcstool/tree/andrewbest/delay>`_
+2. By default will automatically convert ``https`` github urls to ``ssh`` github urls.
+   - This feature allows ``.repos`` files to use ``https`` (easier for public access) while enabling developers to access private repositories with ssh keys.
+
+3. Install locally with ``pip install .`` from the base directory. The ``vcs`` script will be installed in ``~/.local/bin``.
 
 Vcstool is a version control system (VCS) tool, designed to make working with multiple repositories easier.
 

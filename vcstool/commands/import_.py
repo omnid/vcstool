@@ -34,6 +34,12 @@ class ImportCommand(Command):
         self.skip_existing = args.skip_existing
         self.recursive = recursive
         self.shallow = shallow
+        self.ssh_only = args.ssh_only
+
+        # Convert the urls to ssh urls if they are from a known source with a known pattern
+        # Currently only github urls are supported
+        if self.ssh_only:
+          self.url = self.url.replace("https://github.com/", "git@github.com:")
 
 
 def get_parser():
@@ -60,7 +66,9 @@ def get_parser():
         '--skip-existing', action='store_true', default=False,
         help="Don't overwrite existing directories or change custom checkouts "
              'in repos using the same URL (but fetch repos with same URL)')
-
+    group.add_argument(
+        '--ssh-only', action='store_true', default=True,
+        help="Automatically convert remote https urls to ssh urls")
     return parser
 
 
@@ -223,6 +231,7 @@ def main(args=None, stdout=None, stderr=None):
             if job['command'] is None:
                 continue
             url = job['command'].url
+
             # only check the host from a ssh URL
             if not url.startswith('git@') or ':' not in url:
                 continue
